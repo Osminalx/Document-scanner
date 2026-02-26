@@ -1,8 +1,10 @@
 import numpy as np
 import cv2
+from numpy.typing import NDArray
+from typing import Any
 
 
-def order_points(pts):
+def order_points(pts: NDArray[Any]) -> NDArray[Any]:
     # initialize alist of coordinates that will be ordered
     # such that the first entry in the list top left
     # the second entry is the top right, the third is the
@@ -27,7 +29,17 @@ def order_points(pts):
     return rect
 
 
-def four_point_transform(image, pts):
+def four_point_transform(image: NDArray[Any], pts: NDArray[Any]) -> NDArray[Any]:
+    """
+    Apply a four point perspective transform to obtain a bird's eye view.
+
+    Args:
+        image: Input image as numpy array
+        pts: Array of 4 points with shape (4, 2)
+
+    Returns:
+        Warped image as numpy array
+    """
     # obtain a consistent order of the points and unpack them
     # individually
     rect = order_points(pts)
